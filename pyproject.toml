@@ -1,6 +1,6 @@
 [project]
 name = "dshake"
-version = "0.1.0"
+version = "0.1.1"
 description = "Dependency Shake: Analyze actual package usage in your Python codebase."
 authors = [{ name = "Zhetao Dong", email = "zhetao.dong@gmail.com" }]
 readme = "README.md"
