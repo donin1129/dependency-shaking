@@ -5,7 +5,11 @@ from pathlib import Path
 from dshake.package import analyze_package_usages
 
 def run_analyze(args):
-    result = analyze_package_usages(Path(args.src_dir), args.namespace)
+    result = analyze_package_usages(
+        Path(args.src_dir),
+        args.namespace,
+        always_include=args.always_include
+    )
 
     if args.format == "json":
         output = {
@@ -31,6 +35,12 @@ def main():
     analyze_parser.add_argument("--namespace", type=str, required=True, help="Your company/package namespace")
     analyze_parser.add_argument("--output", type=str, default="used_packages.json", help="Output file path")
     analyze_parser.add_argument("--format", choices=["json", "text"], default="json", help="Output format")
+    analyze_parser.add_argument(
+        "--always-include",
+        type=str,
+        nargs="*",
+        help="List of packages to always include even if not detected"
+    )
     analyze_parser.set_defaults(func=run_analyze)
 
     args = parser.parse_args()
